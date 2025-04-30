@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translator + Text-to-Speech</title>
+</head>
+<body>
+    <h2>Text Translator & Speaker</h2>
+    <form action="/translate" method="post">
+        <textarea name="text" rows="4" cols="50" placeholder="Enter English text here..."></textarea><br><br>
+
+        <label>Choose Language:</label>
+        <select name="language">
+            <option value="te">Telugu</option>
+            <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+            <option value="es">Spanish</option>
+        </select><br><br>
+
+        <button type="submit">Translate & Speak</button>
+    </form>
+
+    {% if translated_text %}
+        <p><strong>Translated Text:</strong> {{ translated_text }}</p>
+    {% endif %}
+
+    {% if audio_play %}
+        <audio controls autoplay>
+            <source src="{{ url_for('static', filename='output.mp3') }}" type="audio/mp3">
+        </audio>
+    {% endif %}
+</body>
+</html>
